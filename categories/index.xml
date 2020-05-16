@@ -6,10 +6,28 @@
     <description>Recent content in Categories on Kolaer&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
-    <lastBuildDate>Fri, 15 May 2020 21:11:33 +0400</lastBuildDate>
+    <lastBuildDate>Sat, 16 May 2020 16:32:40 +0400</lastBuildDate>
     
 	<atom:link href="https://kolaer.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>programming</title>
+      <link>https://kolaer.github.io/categories/programming/</link>
+      <pubDate>Sat, 16 May 2020 16:32:40 +0400</pubDate>
+      
+      <guid>https://kolaer.github.io/categories/programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>solving</title>
+      <link>https://kolaer.github.io/categories/solving/</link>
+      <pubDate>Sat, 16 May 2020 16:32:40 +0400</pubDate>
+      
+      <guid>https://kolaer.github.io/categories/solving/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>meta</title>
