@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Kolaer&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
-    <lastBuildDate>Sat, 16 May 2020 16:32:40 +0400</lastBuildDate>
+    <lastBuildDate>Sun, 17 May 2020 14:29:34 +0400</lastBuildDate>
     
 	<atom:link href="https://kolaer.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,16 +14,25 @@
     <item>
       <title>project euler</title>
       <link>https://kolaer.github.io/tags/project-euler/</link>
-      <pubDate>Sat, 16 May 2020 16:32:40 +0400</pubDate>
+      <pubDate>Sun, 17 May 2020 14:29:34 +0400</pubDate>
       
       <guid>https://kolaer.github.io/tags/project-euler/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>prolog</title>
+      <link>https://kolaer.github.io/tags/prolog/</link>
+      <pubDate>Sun, 17 May 2020 14:29:34 +0400</pubDate>
+      
+      <guid>https://kolaer.github.io/tags/prolog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>python</title>
       <link>https://kolaer.github.io/tags/python/</link>
-      <pubDate>Sat, 16 May 2020 16:32:40 +0400</pubDate>
+      <pubDate>Sun, 17 May 2020 14:29:34 +0400</pubDate>
       
       <guid>https://kolaer.github.io/tags/python/</guid>
       <description></description>
@@ -32,7 +41,7 @@
     <item>
       <title>sql</title>
       <link>https://kolaer.github.io/tags/sql/</link>
-      <pubDate>Sat, 16 May 2020 16:32:40 +0400</pubDate>
+      <pubDate>Sun, 17 May 2020 14:29:34 +0400</pubDate>
       
       <guid>https://kolaer.github.io/tags/sql/</guid>
       <description></description>
@@ -41,7 +50,7 @@
     <item>
       <title>ненормальное программирование</title>
       <link>https://kolaer.github.io/tags/%D0%BD%D0%B5%D0%BD%D0%BE%D1%80%D0%BC%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5-%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5/</link>
-      <pubDate>Sat, 16 May 2020 16:32:40 +0400</pubDate>
+      <pubDate>Sun, 17 May 2020 14:29:34 +0400</pubDate>
       
       <guid>https://kolaer.github.io/tags/%D0%BD%D0%B5%D0%BD%D0%BE%D1%80%D0%BC%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5-%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5/</guid>
       <description></description>

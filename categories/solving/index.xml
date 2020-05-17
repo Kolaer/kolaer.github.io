@@ -6,10 +6,19 @@
     <description>Recent content in solving on Kolaer&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
-    <lastBuildDate>Sat, 16 May 2020 16:32:40 +0400</lastBuildDate>
+    <lastBuildDate>Sun, 17 May 2020 14:29:34 +0400</lastBuildDate>
     
 	<atom:link href="https://kolaer.github.io/categories/solving/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Project Euler Day1.5</title>
+      <link>https://kolaer.github.io/posts/project-euler-day1.5/</link>
+      <pubDate>Sun, 17 May 2020 14:29:34 +0400</pubDate>
+      
+      <guid>https://kolaer.github.io/posts/project-euler-day1.5/</guid>
+      <description>Problem 21: Amicable numbers [1]</description>
+    </item>
     
     <item>
       <title>Project Euler Day1</title>

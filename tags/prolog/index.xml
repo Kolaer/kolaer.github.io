@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>sql on Kolaer&#39;s blog</title>
-    <link>https://kolaer.github.io/tags/sql/</link>
-    <description>Recent content in sql on Kolaer&#39;s blog</description>
+    <title>prolog on Kolaer&#39;s blog</title>
+    <link>https://kolaer.github.io/tags/prolog/</link>
+    <description>Recent content in prolog on Kolaer&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
     <lastBuildDate>Sun, 17 May 2020 14:29:34 +0400</lastBuildDate>
     
-	<atom:link href="https://kolaer.github.io/tags/sql/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://kolaer.github.io/tags/prolog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,15 +18,6 @@
       
       <guid>https://kolaer.github.io/posts/project-euler-day1.5/</guid>
       <description>Problem 21: Amicable numbers [1]</description>
-    </item>
-    
-    <item>
-      <title>Project Euler Day1</title>
-      <link>https://kolaer.github.io/posts/project-euler-day1/</link>
-      <pubDate>Sat, 16 May 2020 16:32:40 +0400</pubDate>
-      
-      <guid>https://kolaer.github.io/posts/project-euler-day1/</guid>
-      <description>Problem 21: Amicable numbers</description>
     </item>
     
   </channel>
