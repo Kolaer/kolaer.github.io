@@ -166,8 +166,8 @@ Evaluate the sum of all the amicable numbers under 10000.
 sums <span style="color:#f92672">=</span> map(divisors_sum_prime, ns)
 
 <span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;pairs.pl&#39;</span>, <span style="color:#e6db74">&#39;w&#39;</span>) <span style="color:#66d9ef">as</span> fs:
-<span style="color:#66d9ef">for</span> n, sum_ <span style="color:#f92672">in</span> zip(ns, sums):
-   fs<span style="color:#f92672">.</span>write(f<span style="color:#e6db74">&#34;d({n}, {sum_}).</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+    <span style="color:#66d9ef">for</span> n, sum_ <span style="color:#f92672">in</span> zip(ns, sums):
+        fs<span style="color:#f92672">.</span>write(f<span style="color:#e6db74">&#34;d({n}, {sum_}).</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
 
 fs<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
 fs<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;pair(A, B) :- d(A, B), d(B, A), A =\= B.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
