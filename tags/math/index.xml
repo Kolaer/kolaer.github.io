@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>math on Kolaer&#39;s blog</title>
+    <link>https://kolaer.github.io/tags/math/</link>
+    <description>Recent content in math on Kolaer&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ru-RU</language>
+    <lastBuildDate>Mon, 18 May 2020 14:35:57 +0400</lastBuildDate>
+    
+	<atom:link href="https://kolaer.github.io/tags/math/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Project Euler Day2</title>
+      <link>https://kolaer.github.io/posts/project-euler-day2/</link>
+      <pubDate>Mon, 18 May 2020 14:35:57 +0400</pubDate>
+      
+      <guid>https://kolaer.github.io/posts/project-euler-day2/</guid>
+      <description>Problem 137: Fibonacci golden nuggets</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ru-RU">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#1b1b1b">
+	<title>Project Euler Day2 | Kolaer&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="stylesheet" href="/css/bundle.css">
+	<link rel="icon" href="/icons/16.png" sizes="16x16" type="image/png">
+	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
+		
+</head>
+<body>
+	<header class="header">
+	<a class="logo" href="/">Kolaer&#39;s blog</a>
+	
+</header>
+	<div class="primary">
+	
+	<main class="main">
+		
+<nav class="breadcrumb block" aria-label="breadcrumb">
+	<ol class="breadcrumb__list">
+		
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/">Home</a>
+		</li>
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/posts/">Posts</a>
+		</li>
+		<li class="breadcrumbs__item breadcrumb__item--active" aria-current="page">Project Euler Day2</li>
+	</ol>
+</nav>
+		<div class="single block">
+			<article class="entry">
+				<h1 class="entry__title">Project Euler Day2</h1>
+				<div class="entry__content"><p>Сегодня будем решать <a href="https://projecteuler.net/problem=137">Fibonacci golden nuggets</a>. Уловие задачи не копирую, на официальном сайте оно выглядит гораздо лучше.</p>
+<p>Кратко:</p>
+<p>\( A_F(x) = x F_1 + x^2 F_2 + x^3 F_3 + \dots \), где \( F_1 = 1, F_2 = 1, F_k = F_{k - 1} + F_{k - 2} \).</p>
+<p>При некоторых \( x \), \( A_F(x) \) будет натуральным числом.</p>
+<p>Если \( x \) &ndash; рациональное число и \( A_F(x) \) &ndash; натуральное число, то \( A_F(x) \) &ndash; &ldquo;golden nugget&rdquo;. Нужно найти 15 &ldquo;золотой самородок&rdquo;.</p>
+<hr>
+<p>Найдём значение \( A_F(x) = x F_1 + x^2 F_2 + x^3 F_3 + \dots \):</p>
+<p>$$ A_F(x) = x F_1 + x^2 F_2 + x^3 F_3 + \dots $$
+$$ x A_F(x) = x^2 F_1 + x^3 F_2 + x^4 F_3 + \dots $$
+$$ x^2 A_F(x) = x^3 F_1 + x^4 F_2 + x^5 F_3 + \dots $$</p>
+<p>$$ A_F(x) - x A_F(x) - x^2 A_F(x) = x F_1 + x^2 (F_2 - F_1) + x^3 (F_3 - F_2 - F_1) + x^4 (F_4 - F_3 - F_2) + \dots $$
+$$ A_F(x) (1 - x - x^2) = x $$
+$$ A_F(x) = \frac{x}{1 - x - x^2} $$</p>
+<p>(Слава <del>Ктулху</del> Кнуту!)</p>
+<p>Вспомним что \( A_F(x) \) должно быть натуральным числом:</p>
+<p>$$ \frac{x}{1 - x - x^2} = N $$
+$$ x = N - N x - N x^2 $$
+$$ N x^2 + (N + 1) x - N = 0 $$</p>
+<p>Найдём решение:</p>
+<p>$$ x = \frac{-N - 1 \pm \sqrt{(N + 1)^2 + 4 N^2}}{2 N} $$
+$$ x = \frac{-N - 1 \pm \sqrt{5 N^2 + 2 N + 1}}{2 N} $$</p>
+<p>По условию, \( x \) &ndash; рациональное число, а это значит что \( \sqrt{5 N^2 + 2 N + 1} \) тоже является рациональным числом.</p>
+<p>Или, другими словами \( 5 N^2 + 2 N + 1 \) &ndash; квадрат целого числа (\( N \) &ndash; целое число по определению).</p>
+<p>Можно остановится на этом и записать решение:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> itertools <span style="color:#f92672">import</span> islice
+<span style="color:#f92672">from</span> math <span style="color:#f92672">import</span> sqrt
+<span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> Iterator
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">is_square</span>(n: int) <span style="color:#f92672">-&gt;</span> bool:
+  x <span style="color:#f92672">=</span> int(sqrt(n))
+  <span style="color:#66d9ef">return</span> x<span style="color:#f92672">*</span>x <span style="color:#f92672">==</span> n
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">solutions</span>() <span style="color:#f92672">-&gt;</span> Iterator[int]:
+  n <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+
+  <span style="color:#66d9ef">while</span> True:
+    det_sqr <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> n <span style="color:#f92672">*</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> n)
+    <span style="color:#66d9ef">if</span> is_square(det_sqr):
+      <span style="color:#66d9ef">yield</span> n
+    n <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+
+
+sols <span style="color:#f92672">=</span> solutions()
+
+<span style="color:#66d9ef">for</span> solution_index <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">16</span>):
+  <span style="color:#66d9ef">print</span>(solution_index, next(sols))
+</code></pre></div><p>Однако это слишком медленно. Настолько медленно, что мы никогда не дождёмся ответа. Заметьте насколько быстро растёт \( n \):</p>
+<pre><code>&gt; time python ./sol.py
+0 0
+1 2
+2 15
+3 104
+4 714
+5 4895
+6 33552
+7 229970
+8 1576239
+9 10803704
+Traceback (most recent call last):
+...
+KeyboardInterrupt
+python ./sol.py  13.04s user 0.04s system 98% cpu 13.271 total
+
+&gt; time pypy3 ./sol.py
+0 0
+1 2
+2 15
+3 104
+4 714
+5 4895
+6 33552
+7 229970
+8 1576239
+9 10803704
+10 74049690
+11 507544127
+Traceback (most recent call last):
+...
+KeyboardInterrupt
+pypy3 ./sol.py  12.58s user 0.11s system 98% cpu 12.884 total
+</code></pre><hr>
+<p>Пойдём другим путём. Мы знаем что \( x \) &ndash; рациональное число. Давайте так и запишем: \( x = \frac{s}{r} \), где \( GCD(s, r) = 1 \).</p>
+<p>Получаем:</p>
+<p>$$ A_F(x) = \frac{\frac s r}{1 - \frac s r - \frac {s^2} {r^2}} = N $$
+$$ A_F(x) = \frac{s r}{r^2 - s r - s^2} = N $$</p>
+<p>Учитывая что \( GCD(s r, r^2 - s r - s^2) = 1\), получаем: \( s r = N \), \(r^2 - s r - s^2 = 1 \).</p>
+<p>(Полезно посмотреть на <a href="https://en.wikipedia.org/wiki/Greatest_common_divisor#Properties">свойства gcd</a>)
+$$ GCD(s, r) = 1 \Rightarrow GCD(s r, r^2 - s r - s^2) = GCD(s, r^2 - s r - s^2) \times GCD(r, r^2 - s r - s^2) $$
+$$ GCD(s, r^2 - s r - s^2) = GCD(s, r^2) = GCD(s, r) GCD(s, r) = 1 $$
+$$ GCD(r, r^2 - s r - s^2) = GCD(r, s^2) = GCD(s, r) GCD(s, r) = 1 $$</p>
+<p>Посмотрим внимательнее на \(r^2 - s r - s^2 = 1\). Перепишем левую часть как \(r (r - s) - s^2\). Заметим что это очень похоже на определитель матрицы:</p>
+<p>$$ r (r - s) - s^2 = \det \begin{pmatrix} r &amp; s \\ s &amp; r - s\end{pmatrix} $$</p>
+<p>Это очень похоже на матрицу Фибоначчи:</p>
+<p>$$ \begin{pmatrix} F_{k + 1} &amp; F_k \\ F_k &amp; F_{k - 1} \end{pmatrix} = \begin{pmatrix} F_{k + 1} &amp; F_k \\ F_k &amp; F_{k + 1} - F_k \end{pmatrix} = \begin{pmatrix} 1 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}^k $$</p>
+<p>Посчитаем определитель матрицы Фибоначчи:</p>
+<p>$$ \det \begin{pmatrix} F_{k + 1} &amp; F_k \\ F_k &amp; F_{k + 1} - F_k \end{pmatrix} = \det \begin{pmatrix} 1 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}^k = (0 - 1)^k = (-1)^k $$</p>
+<p>Получаем, что:</p>
+<p>$$ 1 = \det \begin{pmatrix} r &amp; s \\ s &amp; r - s\end{pmatrix} = \det \begin{pmatrix} F_{k + 1} &amp; F_k \\ F_k &amp; F_{k + 1} - F_k \end{pmatrix} = (-1)^k $$</p>
+<p>$$ 1 = \det \begin{pmatrix} r &amp; s \\ s &amp; r - s\end{pmatrix} = \det \begin{pmatrix} F_{2 k + 1} &amp; F_{2 k} \\ F_{2 k} &amp; F_{2 k + 1} - F_k \end{pmatrix} = (-1)^{2 k} = 1 $$</p>
+<p>Или: \( r = F_{2 k + 1} \), \( s = F_{2 k} \), \( N = r s = F_{2 k + 1} \; F_{2 k} \).</p>
+<p>Запишем решение:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> Iterator
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">solutions</span>() <span style="color:#f92672">-&gt;</span> Iterator[int]:
+  k <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+  r <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#75715e"># fib(2 k + 1)</span>
+  s <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#75715e"># fib(2 k)</span>
+
+  <span style="color:#66d9ef">while</span> True:
+    <span style="color:#66d9ef">if</span> k <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+      n <span style="color:#f92672">=</span> r <span style="color:#f92672">*</span> s
+      <span style="color:#66d9ef">yield</span> n
+    k <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+    r, s <span style="color:#f92672">=</span> r <span style="color:#f92672">+</span> s, r
+
+
+sols <span style="color:#f92672">=</span> solutions()
+
+<span style="color:#66d9ef">for</span> solution_index <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">26</span>):
+  <span style="color:#66d9ef">print</span>(solution_index, next(sols))
+</code></pre></div><p>Мнгновенно получаем решение:</p>
+<pre><code>&gt; time python ./sol.py 
+0 0
+1 2
+2 15
+3 104
+4 714
+5 4895
+6 33552
+7 229970
+8 1576239
+9 10803704
+10 74049690
+11 507544127
+12 3478759200
+13 23843770274
+14 163427632719
+15 1120149658760
+16 7677619978602
+17 52623190191455
+18 360684711361584
+19 2472169789339634
+20 16944503814015855
+21 116139356908771352
+22 796030994547383610
+23 5456077604922913919
+24 37396512239913013824
+25 256319508074468182850
+python ./sol.py  0.06s user 0.02s system 97% cpu 0.074 total
+</code></pre></div>
+				
+				<footer class="entry__footer">
+					
+<div class="entry__tags">
+			<a class="entry__tag btn" href="/tags/project-euler/">project euler</a>
+			<a class="entry__tag btn" href="/tags/python/">python</a>
+			<a class="entry__tag btn" href="/tags/math/">math</a>
+</div>
+					
+				</footer>
+				
+			</article>
+		</div>
+	</main>
+	
+<div class="authorbox block">
+	<div class="author">
+		<div class="author__body">
+			<div class="author__name">
+				Наумов Максим @Kolaer
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+
+
+<div class="related block">
+	<h3 class="related__title">Related</h3>
+	<ul class="related__list">
+		
+		<li class="related__item"><a class="related__link" href="/posts/project-euler-day1.5/">Project Euler Day1.5</a></li>
+		
+		<li class="related__item"><a class="related__link" href="/posts/project-euler-day1/">Project Euler Day1</a></li>
+		
+	</ul>
+</div>
+
+	
+<section class="comments block">
+	<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "kolaer" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+	</div>
+	<footer class="footer">
+<div class="footer__social social">
+		<a class="social__link" target="_blank" rel="noopener noreferrer" href="mailto:overlordin777@gmail.com">
+			<svg class="social__icon" aria-label="Email" role="img" width="32" height="32" viewBox="0 0 512 512"><path d="M299 268l124 106c-4 4-10 7-17 7H106c-7 0-13-3-17-7l124-106 43 38 43-38zm-43 13L89 138c4-4 10-7 17-7h300c7 0 13 3 17 7L256 281zm54-23l121-105v208L310 258zM81 153l121 105L81 361V153z"/></svg>
+		</a>
+		<a class="social__link" target="_blank" rel="noopener noreferrer" href="https://twitter.com/kolaer163">
+			<svg class="social__icon" aria-label="Twitter" role="img" width="32" height="32" viewBox="0 0 512 512"><path d="M437 152a72 72 0 0 1-40 12 72 72 0 0 0 32-40 72 72 0 0 1-45 17 72 72 0 0 0-122 65 200 200 0 0 1-145-74 72 72 0 0 0 22 94 72 72 0 0 1-32-7 72 72 0 0 0 56 69 72 72 0 0 1-32 1 72 72 0 0 0 67 50 200 200 0 0 1-105 29 200 200 0 0 0 309-179 200 200 0 0 0 35-37"/></svg>
+		</a>
+		<a class="social__link" target="_blank" rel="noopener noreferrer" href="https://t.me/kolaer">
+			<svg class="social__icon" aria-label="Telegram" role="img" width="32" height="32" viewBox="0 0 512 512"><path d="M199 404c-11 0-10-4-13-14l-32-105 245-144"/><path d="M199 404c7 0 11-4 16-8l45-43-56-34"/><path d="M204 319l135 99c14 9 26 4 30-14l55-258c5-22-9-32-24-25L79 245c-21 8-21 21-4 26l83 26 190-121c9-5 17-3 11 4"/></svg>
+		</a>
+		<a class="social__link" target="_blank" rel="noopener noreferrer" href="https://vk.com/kolaer">
+			<svg class="social__icon" aria-label="VK" role="img" width="32" height="32" viewBox="0 0 512 512"><path d="M274 363c5-1 14-3 14-15 0 0-1-30 13-34s32 29 51 42c14 9 25 8 25 8l51-1s26-2 14-23c-1-2-9-15-39-42-31-30-26-25 11-76 23-31 33-50 30-57-4-7-20-6-20-6h-57c-6 0-9 1-12 6 0 0-9 25-21 45-25 43-35 45-40 42-9-5-7-24-7-37 0-45 7-61-13-65-13-2-59-4-73 3-7 4-11 11-8 12 3 0 12 1 17 7 8 13 9 75-2 81-15 11-53-62-62-86-2-6-5-7-12-9H79c-6 0-15 1-11 13 27 56 83 193 184 192z"/></svg>
+		</a>
+		<a class="social__link" target="_blank" rel="noopener noreferrer" href="https://github.com/kolaer">
+			<svg class="social__icon" aria-label="Github" role="img" width="32" height="32" viewBox="0 0 512 512"><path d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
+		</a>
+</div>
+	<div class="footer__copyright">© 2020 Kolaer&#39;s blog. <span class="footer__copyright-credits">Powered by <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/vimux/binario" rel="nofollow noopener" target="_blank">Binario</a> theme.</span></div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+
+</body>
+</html>
